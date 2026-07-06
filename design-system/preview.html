@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>design-master — Style Guide</title>
+<!-- preview.html is the ONE file allowed to <link> the design system
+     relatively: it lives inside design-system/ and exists precisely to
+     render the current tokens. Deliverables must inline instead. -->
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="components.css">
+<style>
+  body { margin: 0; background: var(--color-bg); color: var(--color-text); font-family: var(--font-sans); }
+  main { max-width: 960px; margin: 0 auto; padding: var(--space-12) var(--space-6) var(--space-24); }
+  h1 { font-family: var(--font-display); font-size: var(--text-3xl); margin: 0 0 var(--space-2); }
+  .subtitle { color: var(--color-text-muted); margin: 0 0 var(--space-12); }
+  h2 { font-family: var(--font-display); font-size: var(--text-xl); margin: var(--space-16) 0 var(--space-6); padding-bottom: var(--space-2); border-bottom: 1px solid var(--color-border); }
+  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: var(--space-4); }
+  .swatch { border: 1px solid var(--color-border); border-radius: var(--radius-md); overflow: hidden; background: var(--color-surface); }
+  .swatch .chip { height: 64px; }
+  .swatch .meta { padding: var(--space-2) var(--space-3); font-size: var(--text-xs); color: var(--color-text-muted); }
+  .swatch .meta strong { display: block; color: var(--color-text); font-family: var(--font-mono); font-weight: 600; }
+  .type-row { display: flex; align-items: baseline; gap: var(--space-6); margin-bottom: var(--space-4); }
+  .type-row .tag { width: 90px; flex: none; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-text-muted); }
+  .space-row { display: flex; align-items: center; gap: var(--space-4); margin-bottom: var(--space-2); }
+  .space-row .tag { width: 90px; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-text-muted); }
+  .space-row .bar { height: 12px; background: var(--color-primary); border-radius: 2px; opacity: .85; }
+  .demo { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); }
+</style>
+</head>
+<body>
+<main>
+  <h1>design-master style guide</h1>
+  <p class="subtitle">Live view of <code>tokens.css</code> + <code>components.css</code>. Re-run after <code>/design-import</code> or <code>/design-system</code> to check a rebrand.</p>
+
+  <h2>Colors</h2>
+  <div class="swatches">
+    <div class="swatch"><div class="chip" style="background:var(--color-bg)"></div><div class="meta"><strong>--color-bg</strong>background</div></div>
+    <div class="swatch"><div class="chip" style="background:var(--color-surface)"></div><div class="meta"><strong>--color-surface</strong>surface</div></div>
+    <div class="swatch"><div class="chip" style="background:var(--color-text)"></div><div class="meta"><strong>--color-text</strong>text</div></div>
+    <div class="swatch"><div class="chip" style="background:var(--color-text-muted)"></div><div class="meta"><strong>--color-text-muted</strong>muted text</div></div>
+    <div class="swatch"><div class="chip" style="background:var(--color-primary)"></div><div class="meta"><strong>--color-primary</strong>primary</div></div>
+    <div class="swatch"><div class="chip" style="background:var(--color-accent)"></div><div class="meta"><strong>--color-accent</strong>accent</div></div>
+    <div class="swatch"><div class="chip" style="background:var(--color-border)"></div><div class="meta"><strong>--color-border</strong>border</div></div>
+    <div class="swatch"><div class="chip" style="background:var(--color-success)"></div><div class="meta"><strong>--color-success</strong>success</div></div>
+    <div class="swatch"><div class="chip" style="background:var(--color-warning)"></div><div class="meta"><strong>--color-warning</strong>warning</div></div>
+    <div class="swatch"><div class="chip" style="background:var(--color-danger)"></div><div class="meta"><strong>--color-danger</strong>danger</div></div>
+  </div>
+
+  <h2>Type scale</h2>
+  <div class="type-row"><span class="tag">--text-5xl</span><span style="font-size:var(--text-5xl); font-family:var(--font-display); font-weight:700; line-height:1.1;">Aa 見出し</span></div>
+  <div class="type-row"><span class="tag">--text-4xl</span><span style="font-size:var(--text-4xl); font-family:var(--font-display); font-weight:700; line-height:1.1;">Aa 見出し</span></div>
+  <div class="type-row"><span class="tag">--text-3xl</span><span style="font-size:var(--text-3xl); font-family:var(--font-display); font-weight:700;">Aa 見出し</span></div>
+  <div class="type-row"><span class="tag">--text-2xl</span><span style="font-size:var(--text-2xl); font-family:var(--font-display); font-weight:600;">Aa 見出し</span></div>
+  <div class="type-row"><span class="tag">--text-xl</span><span style="font-size:var(--text-xl); font-weight:600;">Aa 小見出し</span></div>
+  <div class="type-row"><span class="tag">--text-lg</span><span style="font-size:var(--text-lg);">Aa リード文 — The quick brown fox</span></div>
+  <div class="type-row"><span class="tag">--text-base</span><span style="font-size:var(--text-base);">Aa 本文 — The quick brown fox jumps over the lazy dog. 素早い茶色の狐。</span></div>
+  <div class="type-row"><span class="tag">--text-sm</span><span style="font-size:var(--text-sm); color:var(--color-text-muted);">Aa 補足 — supporting text</span></div>
+  <div class="type-row"><span class="tag">--text-xs</span><span style="font-size:var(--text-xs); color:var(--color-text-muted);">Aa キャプション</span></div>
+
+  <h2>Spacing</h2>
+  <div class="space-row"><span class="tag">--space-1</span><div class="bar" style="width:var(--space-1)"></div></div>
+  <div class="space-row"><span class="tag">--space-2</span><div class="bar" style="width:var(--space-2)"></div></div>
+  <div class="space-row"><span class="tag">--space-4</span><div class="bar" style="width:var(--space-4)"></div></div>
+  <div class="space-row"><span class="tag">--space-6</span><div class="bar" style="width:var(--space-6)"></div></div>
+  <div class="space-row"><span class="tag">--space-8</span><div class="bar" style="width:var(--space-8)"></div></div>
+  <div class="space-row"><span class="tag">--space-12</span><div class="bar" style="width:var(--space-12)"></div></div>
+  <div class="space-row"><span class="tag">--space-16</span><div class="bar" style="width:var(--space-16)"></div></div>
+  <div class="space-row"><span class="tag">--space-24</span><div class="bar" style="width:var(--space-24)"></div></div>
+
+  <h2>Buttons</h2>
+  <div class="demo">
+    <button class="btn btn-primary">Primary action</button>
+    <button class="btn btn-ghost">Secondary</button>
+    <button class="btn btn-primary btn-sm">Small</button>
+    <span class="badge">Badge</span>
+    <span class="badge badge-accent">Accent</span>
+    <span class="badge badge-success">Success</span>
+    <span class="badge badge-danger">Danger</span>
+  </div>
+
+  <h2>Cards & stats</h2>
+  <div class="grid-2">
+    <div class="card">
+      <span class="badge">Feature</span>
+      <h3 style="margin-top:var(--space-3);">Fast onboarding</h3>
+      <p>Teams are productive on day one — no training sessions required.</p>
+    </div>
+    <div class="card">
+      <div class="stat">
+        <span class="stat-value">98.2%</span>
+        <span class="stat-label">Customer satisfaction, FY2026</span>
+      </div>
+    </div>
+  </div>
+
+  <h2>Table</h2>
+  <table class="table">
+    <thead><tr><th>Plan</th><th>Seats</th><th>Price</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Starter</td><td>5</td><td>¥9,800/mo</td><td><span class="badge badge-success">Active</span></td></tr>
+      <tr><td>Team</td><td>25</td><td>¥39,800/mo</td><td><span class="badge">Trial</span></td></tr>
+      <tr><td>Enterprise</td><td>Unlimited</td><td>Contact us</td><td><span class="badge badge-warning">Pending</span></td></tr>
+    </tbody>
+  </table>
+
+  <h2>Navbar</h2>
+  <div style="border:1px solid var(--color-border); border-radius:var(--radius-md); overflow:hidden;">
+    <header class="navbar">
+      <a class="brand" href="#">Brand</a>
+      <nav><a href="#">Product</a><a href="#">Pricing</a><a href="#">Docs</a></nav>
+      <button class="btn btn-primary btn-sm">Sign up</button>
+    </header>
+  </div>
+</main>
+</body>
+</html>
