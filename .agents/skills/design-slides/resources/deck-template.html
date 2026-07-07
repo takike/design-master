@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- TEMPLATE CONTRACT (export scripts depend on all of these):
+     1. <meta name="doc-type" content="deck">
+     2. Every slide is a direct <section class="slide"> child of <main class="deck">,
+        designed at exactly 1280×720.
+     3. The #deck-engine style block and the nav script (window.__deck API)
+        are kept as-is.
+     4. Replace the #design-tokens block with the CURRENT contents of
+        design-system/tokens.css when generating a deck.
+     Per-deck styling goes in #slide-styles. -->
+<meta name="doc-type" content="deck">
+<title>Deck Title</title>
+<style id="design-tokens">
+/* INLINE design-system/tokens.css HERE (current version below) */
+:root {
+  --color-bg: #fafaf9;
+  --color-surface: #ffffff;
+  --color-text: #1c1917;
+  --color-text-muted: #57534e;
+  --color-primary: #4338ca;
+  --color-primary-contrast: #ffffff;
+  --color-accent: #d97706;
+  --color-border: #e7e5e4;
+  --color-success: #15803d;
+  --color-warning: #b45309;
+  --color-danger: #b91c1c;
+  --font-sans: 'Inter', 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic UI', system-ui, sans-serif;
+  --font-display: 'Inter', 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic UI', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, 'Noto Sans Mono', monospace;
+  --text-xs: 12px; --text-sm: 14px; --text-base: 16px; --text-lg: 20px;
+  --text-xl: 25px; --text-2xl: 31px; --text-3xl: 39px; --text-4xl: 49px; --text-5xl: 61px;
+  --space-0: 0; --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
+  --space-6: 24px; --space-8: 32px; --space-12: 48px; --space-16: 64px; --space-24: 96px;
+  --radius-sm: 4px; --radius-md: 8px; --radius-lg: 16px; --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px rgba(28, 25, 23, 0.06);
+  --shadow-md: 0 2px 8px rgba(28, 25, 23, 0.08);
+  --shadow-lg: 0 8px 24px rgba(28, 25, 23, 0.12);
+}
+</style>
+<style id="deck-engine">
+/* Deck engine — do not edit. Screen: one slide, scaled to fit the window.
+   Print/PDF: every slide on its own 1280×720 page. */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+.slide {
+  width: 1280px; height: 720px;
+  position: relative;
+  overflow: hidden;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: var(--text-lg);
+  line-height: 1.6;
+}
+@media screen {
+  body { background: #18181b; overflow: hidden; }
+  .deck { position: fixed; inset: 0; }
+  .slide {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
+  }
+  /* !important so per-deck rules like `.slide.divider { display:flex }`
+     cannot make an inactive slide visible. */
+  .slide:not(.active) { display: none !important; }
+  #deck-progress {
+    position: fixed; bottom: 0; left: 0; height: 4px; width: 0;
+    background: var(--color-primary); z-index: 10; transition: width 0.2s ease;
+  }
+  #deck-pagenum {
+    position: fixed; bottom: 12px; right: 16px; z-index: 10;
+    color: #a1a1aa; font-family: var(--font-mono); font-size: 12px;
+  }
+}
+@media print {
+  @page { size: 1280px 720px; margin: 0; }
+  body { background: none; }
+  .deck { position: static; }
+  .slide {
+    /* No display override: slides keep their own display (block/flex). */
+    position: relative; top: 0; left: 0;
+    transform: none !important;
+    box-shadow: none;
+    break-after: page; page-break-after: always;
+  }
+  .slide:last-child { break-after: auto; page-break-after: auto; }
+  #deck-progress, #deck-pagenum { display: none; }
+}
+</style>
+<style id="slide-styles">
+/* Per-deck styles. Build on the tokens; keep every slide inside 1280×720. */
+.slide { padding: var(--space-16); }
+.slide .kicker {
+  color: var(--color-primary);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 var(--space-4);
+}
+.slide h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-5xl);
+  line-height: 1.1;
+  margin: 0 0 var(--space-6);
+}
+.slide h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  line-height: 1.15;
+  margin: 0 0 var(--space-8);
+}
+.slide .footer {
+  position: absolute; left: var(--space-16); right: var(--space-16); bottom: var(--space-8);
+  display: flex; justify-content: space-between;
+  color: var(--color-text-muted); font-size: var(--text-sm);
+}
+.slide.title-slide { display: flex; flex-direction: column; justify-content: center; }
+.slide.divider { background: var(--color-primary); color: var(--color-primary-contrast); display: flex; flex-direction: column; justify-content: center; }
+.slide.divider h2 { color: inherit; }
+</style>
+</head>
+<body>
+<main class="deck">
+
+  <section class="slide title-slide">
+    <p class="kicker">Kicker / company name</p>
+    <h1>Deck title goes here</h1>
+    <p style="color: var(--color-text-muted); font-size: var(--text-xl); margin: 0;">Subtitle — date, presenter</p>
+    <div class="footer"><span>Brand</span><span></span></div>
+  </section>
+
+  <section class="slide">
+    <h2>Content slide heading</h2>
+    <p>One idea per slide. Keep it under ~40 words.</p>
+    <div class="footer"><span>Brand</span><span class="pageno"></span></div>
+  </section>
+
+</main>
+<div id="deck-progress"></div>
+<div id="deck-pagenum"></div>
+<script>
+// Deck navigation — do not edit. Exposes window.__deck for the export tools.
+(() => {
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  let current = 0;
+  function goTo(i) {
+    current = Math.max(0, Math.min(slides.length - 1, i));
+    slides.forEach((s, j) => s.classList.toggle('active', j === current));
+    const bar = document.getElementById('deck-progress');
+    if (bar) bar.style.width = (((current + 1) / slides.length) * 100) + '%';
+    const num = document.getElementById('deck-pagenum');
+    if (num) num.textContent = (current + 1) + ' / ' + slides.length;
+    history.replaceState(null, '', '#' + (current + 1));
+  }
+  function layout() {
+    const s = Math.min(innerWidth / 1280, innerHeight / 720);
+    slides.forEach((sl) => (sl.style.transform = 'translate(-50%, -50%) scale(' + s + ')'));
+  }
+  addEventListener('resize', layout);
+  addEventListener('keydown', (e) => {
+    if (['ArrowRight', ' ', 'PageDown'].includes(e.key)) { e.preventDefault(); goTo(current + 1); }
+    else if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); goTo(current - 1); }
+    else if (e.key === 'Home') goTo(0);
+    else if (e.key === 'End') goTo(slides.length - 1);
+  });
+  slides.forEach((sl, i) => {
+    const n = sl.querySelector('.pageno');
+    if (n) n.textContent = String(i + 1);
+  });
+  window.__deck = {
+    get count() { return slides.length; },
+    get current() { return current; },
+    goTo,
+  };
+  layout();
+  goTo((parseInt(location.hash.slice(1), 10) || 1) - 1);
+})();
+</script>
+</body>
+</html>
