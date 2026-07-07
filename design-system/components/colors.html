@@ -1,0 +1,70 @@
+<!-- @dsCard group="Colors" name="カラーパレット" subtitle="コア4色 / グレー / 拡張ランプ" width="1080" height="900" -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Colors — Google Core Brand</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family:"Google Sans","Google Sans Text",Roboto,"Helvetica Neue",Arial,"Noto Sans JP",sans-serif;
+  background:#fff; color:#202124; padding:48px;
+}
+h1 { font-size:28px; font-weight:400; margin-bottom:4px; }
+.lede { font-size:14px; color:#5F6368; margin-bottom:32px; }
+h2 { font-size:15px; font-weight:500; color:#5F6368; margin:28px 0 12px; }
+.row { display:flex; gap:12px; }
+.swatch { flex:1; border-radius:12px; padding:14px 12px 12px; min-height:96px;
+  display:flex; flex-direction:column; justify-content:flex-end; }
+.swatch b { font-size:13px; font-weight:500; }
+.swatch span { font-size:12px; opacity:.8; }
+.light { color:#fff; } .dark { color:#202124; }
+.swatch.line { outline:1px solid #DADCE0; outline-offset:-1px; }
+.ramp { display:flex; border-radius:10px; overflow:hidden; height:44px; }
+.ramp i { flex:1; }
+.note { font-size:12px; color:#5F6368; margin-top:8px; }
+</style>
+</head>
+<body>
+  <h1>カラー</h1>
+  <p class="lede">白が主役。色の面積は約10%。1スライド1アクセント色、並び順は常にロゴ順(Blue → Red → Yellow → Green)。黒 #000000 は使わない。</p>
+
+  <h2>コアカラー</h2>
+  <div class="row">
+    <div class="swatch light" style="background:#4285F4"><b>Google Blue 500</b><span>#4285F4 — 第一アクセント</span></div>
+    <div class="swatch light" style="background:#EA4335"><b>Google Red 500</b><span>#EA4335</span></div>
+    <div class="swatch dark" style="background:#FBBC04"><b>Google Yellow 500</b><span>#FBBC04 — 面でのみ使用</span></div>
+    <div class="swatch light" style="background:#34A853"><b>Google Green 500</b><span>#34A853</span></div>
+  </div>
+
+  <h2>グレースケール(テキストは Grey 900)</h2>
+  <div class="row">
+    <div class="swatch light" style="background:#202124"><b>Grey 900</b><span>#202124 — インク</span></div>
+    <div class="swatch light" style="background:#5F6368"><b>Grey 700</b><span>#5F6368 — 補助テキスト</span></div>
+    <div class="swatch dark" style="background:#9AA0A6"><b>Grey 500</b><span>#9AA0A6</span></div>
+    <div class="swatch dark line" style="background:#DADCE0"><b>Grey 300</b><span>#DADCE0 — 罫線</span></div>
+    <div class="swatch dark line" style="background:#F8F9FA"><b>Grey 50</b><span>#F8F9FA — カード面</span></div>
+  </div>
+
+  <h2>拡張ランプ(淡色 50 → 濃色 900)</h2>
+  <div class="ramp">
+    <i style="background:#E8F0FE"></i><i style="background:#AECBFA"></i><i style="background:#4285F4"></i><i style="background:#1A73E8"></i><i style="background:#1967D2"></i><i style="background:#185ABC"></i><i style="background:#174EA6"></i>
+  </div>
+  <p class="note">Blue: #E8F0FE / #AECBFA / #4285F4 / #1A73E8 / #1967D2 / #185ABC / #174EA6</p>
+  <div class="ramp" style="margin-top:10px">
+    <i style="background:#FCE8E6"></i><i style="background:#F6AEA9"></i><i style="background:#EA4335"></i><i style="background:#D93025"></i><i style="background:#C5221F"></i><i style="background:#B31412"></i><i style="background:#A50E0E"></i>
+  </div>
+  <p class="note">Red: #FCE8E6 / #F6AEA9 / #EA4335 / #D93025 / #C5221F / #B31412 / #A50E0E</p>
+  <div class="ramp" style="margin-top:10px">
+    <i style="background:#FEF7E0"></i><i style="background:#FDE293"></i><i style="background:#FBBC04"></i><i style="background:#F9AB00"></i><i style="background:#F29900"></i><i style="background:#EA8600"></i><i style="background:#E37400"></i>
+  </div>
+  <p class="note">Yellow: #FEF7E0 / #FDE293 / #FBBC04 / #F9AB00 / #F29900 / #EA8600 / #E37400 — 白地の色付きテキストは 600 以深</p>
+  <div class="ramp" style="margin-top:10px">
+    <i style="background:#E6F4EA"></i><i style="background:#A8DAB5"></i><i style="background:#34A853"></i><i style="background:#1E8E3E"></i><i style="background:#188038"></i><i style="background:#137333"></i><i style="background:#0D652D"></i>
+  </div>
+  <p class="note">Green: #E6F4EA / #A8DAB5 / #34A853 / #1E8E3E / #188038 / #137333 / #0D652D</p>
+</body>
+</html>

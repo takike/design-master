@@ -1,6 +1,11 @@
 /*
  * design-master — design tokens
  *
+ * BRAND: Google Core Brand (v2) — imported 2026-07-07 from
+ * takike/design-system (google-core-brand). Bundle archived in
+ * imports/google-core-brand/; full brand rules in BRAND.md and the
+ * "Brand notes" section of GUIDELINES.md.
+ *
  * Source of truth: this file together with tokens.json (keep both in sync;
  * the /design-system and /design-import skills do this automatically).
  *
@@ -8,27 +13,33 @@
  * components.css depend on them. Rebranding changes VALUES only.
  *
  * Web fonts: deliverables load fonts per-file via a Google Fonts <link>
- * with display=swap. The stacks below include system + Japanese fallbacks
- * so file:// and offline viewing still look right.
+ * (Roboto + Noto Sans JP, display=swap — Google Sans is not publicly
+ * licensed, Roboto is the sanctioned fallback). The stacks below include
+ * system + Japanese fallbacks so file:// and offline viewing still look
+ * right.
  */
 :root {
-  /* Color */
-  --color-bg: #fafaf9;
-  --color-surface: #ffffff;
-  --color-text: #1c1917;
-  --color-text-muted: #57534e;
-  --color-primary: #4338ca;
-  --color-primary-contrast: #ffffff;
-  --color-accent: #d97706;
-  --color-border: #e7e5e4;
-  --color-success: #15803d;
-  --color-warning: #b45309;
-  --color-danger: #b91c1c;
+  /* Color — brand rule: colored TEXT on white uses the 600-series
+     (primary #1A73E8 = Blue 600, accent #D93025 = Red 600). The 500-series
+     (Blue #4285F4, Red #EA4335, Yellow #FBBC04, Green #34A853) is for
+     shapes/fills only. Warning #F29900 is NOT text-safe on white — always
+     icon + label (see BRAND.md). */
+  --color-bg: #FFFFFF;
+  --color-surface: #F8F9FA;
+  --color-text: #202124;
+  --color-text-muted: #5F6368;
+  --color-primary: #1A73E8;
+  --color-primary-contrast: #FFFFFF;
+  --color-accent: #D93025;
+  --color-border: #DADCE0;
+  --color-success: #188038;
+  --color-warning: #F29900;
+  --color-danger: #C5221F;
 
   /* Typography */
-  --font-sans: 'Inter', 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic UI', system-ui, sans-serif;
-  --font-display: 'Inter', 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic UI', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, 'Noto Sans Mono', monospace;
+  --font-sans: 'Google Sans', 'Google Sans Text', Roboto, 'Helvetica Neue', Arial, 'Noto Sans JP', sans-serif;
+  --font-display: 'Google Sans', 'Google Sans Text', Roboto, 'Helvetica Neue', Arial, 'Noto Sans JP', sans-serif;
+  --font-mono: 'Roboto Mono', 'SFMono-Regular', Consolas, 'Noto Sans Mono', monospace;
 
   /* Type scale (ratio 1.25, base 16px) */
   --text-xs: 12px;
@@ -41,7 +52,7 @@
   --text-4xl: 49px;
   --text-5xl: 61px;
 
-  /* Spacing (4px grid) */
+  /* Spacing (4px grid; brand composes on 8px multiples) */
   --space-0: 0;
   --space-1: 4px;
   --space-2: 8px;
@@ -53,14 +64,14 @@
   --space-16: 64px;
   --space-24: 96px;
 
-  /* Radius */
+  /* Radius — brand: cards 24px, chips/buttons are pills */
   --radius-sm: 4px;
   --radius-md: 8px;
-  --radius-lg: 16px;
+  --radius-lg: 24px;
   --radius-full: 9999px;
 
-  /* Shadow */
-  --shadow-sm: 0 1px 2px rgba(28, 25, 23, 0.06);
-  --shadow-md: 0 2px 8px rgba(28, 25, 23, 0.08);
-  --shadow-lg: 0 8px 24px rgba(28, 25, 23, 0.12);
+  /* Shadow — brand: flat by default; shadows rare and very subtle */
+  --shadow-sm: none;
+  --shadow-md: 0 1px 3px rgba(60, 64, 67, 0.15);
+  --shadow-lg: 0 2px 6px rgba(60, 64, 67, 0.15);
 }

@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Google Core Brand — deck template</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Tokens below mirror ../tokens.css (inlined so this file is self-contained).
+   Sizes are authored in cqw against the 1920px-wide base canvas: 1cqw = 19.2px. */
+:root {
+  --g-blue-500:#4285F4; --g-red-500:#EA4335; --g-yellow-500:#FBBC04; --g-green-500:#34A853;
+  --g-blue-50:#E8F0FE; --g-blue-200:#AECBFA; --g-blue-600:#1A73E8; --g-blue-900:#174EA6;
+  --g-red-50:#FCE8E6; --g-red-600:#D93025; --g-red-900:#A50E0E;
+  --g-yellow-50:#FEF7E0; --g-yellow-700:#F29900; --g-yellow-800:#EA8600;
+  --g-green-50:#E6F4EA; --g-green-600:#1E8E3E; --g-green-700:#188038;
+  --g-grey-50:#F8F9FA; --g-grey-100:#F1F3F4; --g-grey-200:#E8EAED; --g-grey-300:#DADCE0;
+  --g-grey-400:#BDC1C6; --g-grey-500:#9AA0A6; --g-grey-600:#80868B; --g-grey-700:#5F6368;
+  --g-grey-800:#3C4043; --g-grey-900:#202124;
+  --font-sans:"Google Sans","Google Sans Text",Roboto,"Helvetica Neue",Arial,"Noto Sans JP",sans-serif;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family:var(--font-sans);
+  background:var(--g-grey-200);
+  padding:48px 24px;
+}
+.deck { max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:40px; }
+.frame-label { font-size:13px; color:var(--g-grey-700); margin-bottom:8px; }
+
+/* --- Slide canvas --------------------------------------------------------- */
+.slide {
+  aspect-ratio:16/9;
+  container-type:inline-size;
+  background:var(--surface,#fff);
+  border-radius:8px;
+  overflow:hidden;
+  position:relative;
+  box-shadow:0 1px 3px rgba(60,64,67,.15);
+  /* semantic roles, light slide */
+  --surface:#FFFFFF; --surface-alt:var(--g-grey-50);
+  --ink:var(--g-grey-900); --ink-secondary:var(--g-grey-700); --ink-muted:var(--g-grey-500);
+  --hairline:var(--g-grey-300);
+  --accent:var(--g-blue-500); --accent-text:var(--g-blue-600); --accent-wash:var(--g-blue-50);
+  --chart-1:#4285F4; --chart-2:#EA4335; --chart-3:#EA8600;
+  --chart-4:#1E8E3E; --chart-5:#174EA6; --chart-6:#A50E0E;
+  color:var(--ink);
+}
+.slide[data-theme="dark"] {
+  --surface:var(--g-grey-900); --surface-alt:var(--g-grey-800);
+  --ink:#FFFFFF; --ink-secondary:var(--g-grey-300); --ink-muted:var(--g-grey-500);
+  --hairline:var(--g-grey-800);
+  --accent-text:var(--g-blue-200); --accent-wash:var(--g-grey-800);
+  --chart-1:#4285F4; --chart-2:#EA4335; --chart-3:#D08000;
+  --chart-4:#34A853; --chart-5:#1A73E8; --chart-6:#D93025;
+}
+.accent-blue   { --accent:var(--g-blue-500);   --accent-text:var(--g-blue-600);   --accent-wash:var(--g-blue-50); }
+.accent-red    { --accent:var(--g-red-500);    --accent-text:var(--g-red-600);    --accent-wash:var(--g-red-50); }
+.accent-yellow { --accent:var(--g-yellow-500); --accent-text:var(--g-yellow-800); --accent-wash:var(--g-yellow-50); }
+.accent-green  { --accent:var(--g-green-500);  --accent-text:var(--g-green-600);  --accent-wash:var(--g-green-50); }
+
+/* margin frame: 96px at 1920 = 5cqw */
+.pad { position:absolute; inset:0; padding:5cqw; display:flex; flex-direction:column; }
+
+/* --- Type roles (px @1920 → cqw) ------------------------------------------ */
+.display  { font-size:5cqw;      font-weight:400; line-height:1.1;  letter-spacing:-0.01em; }
+.headline { font-size:2.8125cqw; font-weight:400; line-height:1.15; }
+.subtitle { font-size:1.667cqw;  font-weight:400; line-height:1.4; color:var(--ink-secondary); }
+.body     { font-size:1.458cqw;  font-weight:400; line-height:1.5; }
+.kicker   { font-size:1.146cqw;  font-weight:500; line-height:1.2; color:var(--accent-text); }
+.caption  { font-size:0.9375cqw; font-weight:400; line-height:1.4; color:var(--ink-secondary); }
+.stat     { font-size:10.4cqw;   font-weight:400; line-height:1;   color:var(--accent-text); letter-spacing:-0.02em; }
+
+/* --- Shared pieces --------------------------------------------------------- */
+.dots { display:flex; gap:0.833cqw; }
+.dots i { width:1.25cqw; height:1.25cqw; border-radius:50%; }
+.dots i:nth-child(1){background:var(--g-blue-500)} .dots i:nth-child(2){background:var(--g-red-500)}
+.dots i:nth-child(3){background:var(--g-yellow-500)} .dots i:nth-child(4){background:var(--g-green-500)}
+
+.footer {
+  position:absolute; left:5cqw; right:5cqw; bottom:2cqw;
+  display:flex; justify-content:space-between; align-items:center;
+}
+.card {
+  background:var(--surface-alt); border-radius:1.25cqw; padding:2.5cqw;
+}
+.chip {
+  display:inline-block; border-radius:999px; padding:0.4cqw 1.1cqw;
+  font-size:0.9375cqw; font-weight:500; background:var(--accent-wash); color:var(--accent-text);
+}
+
+/* =========================================================================
+   1. Title
+   ========================================================================= */
+.s-title .pad { justify-content:center; gap:2.5cqw; }
+.s-title .meta { display:flex; gap:1.667cqw; align-items:center; }
+
+/* quarter-circle background shape: the only element allowed past the margin */
+.corner-shape {
+  position:absolute; right:-9cqw; bottom:-9cqw; width:24cqw; height:24cqw;
+  border-radius:50%; background:var(--g-blue-50);
+}
+.corner-shape::after {
+  content:""; position:absolute; inset:5.2cqw; border-radius:50%; background:var(--g-blue-200);
+}
+
+/* =========================================================================
+   2. Agenda
+   ========================================================================= */
+.s-agenda .pad { flex-direction:row; gap:3.33cqw; }
+.s-agenda .left { flex:0 0 34%; display:flex; flex-direction:column; gap:1.25cqw; }
+.agenda-list { flex:1; display:flex; flex-direction:column; justify-content:center; }
+.agenda-list li {
+  list-style:none; display:flex; gap:2cqw; align-items:baseline;
+  padding:1.35cqw 0; border-bottom:1px solid var(--hairline);
+}
+.agenda-list li:last-child { border-bottom:none; }
+.agenda-list .num { font-size:1.667cqw; color:var(--accent-text); font-weight:500; min-width:2.5cqw; }
+
+/* =========================================================================
+   3. Section divider
+   ========================================================================= */
+.s-divider { background:var(--g-blue-500); }
+.s-divider .pad { justify-content:flex-end; gap:1.25cqw; }
+.s-divider .headline, .s-divider .subtitle { color:#fff; }
+.s-divider .subtitle { opacity:.85; }
+.s-divider .big-num {
+  position:absolute; top:-6cqw; right:2cqw; font-size:26cqw; font-weight:400;
+  color:rgba(255,255,255,.18); line-height:1;
+}
+
+/* =========================================================================
+   4. Content (heading + bullets)
+   ========================================================================= */
+.head-block { display:flex; flex-direction:column; gap:0.833cqw; margin-bottom:2.5cqw; }
+.bullets { display:flex; flex-direction:column; gap:1.667cqw; max-width:72%; }
+.bullets li { list-style:none; display:flex; gap:1.25cqw; align-items:flex-start; }
+.bullets li::before {
+  content:""; flex:0 0 auto; width:0.73cqw; height:0.73cqw; border-radius:50%;
+  background:var(--accent); margin-top:0.68cqw;
+}
+
+/* =========================================================================
+   5. Two-column
+   ========================================================================= */
+.cols { display:flex; gap:1.667cqw; flex:1; }
+.cols .card { flex:1; display:flex; flex-direction:column; gap:1.25cqw; }
+.card-head { display:flex; align-items:center; gap:0.833cqw; }
+.card-head i { width:1cqw; height:1cqw; border-radius:50%; background:var(--accent); }
+.card ul { display:flex; flex-direction:column; gap:0.833cqw; }
+.card li { list-style:none; color:var(--ink); }
+
+/* =========================================================================
+   6. Big stat
+   ========================================================================= */
+.s-stat .hero { display:flex; align-items:baseline; gap:1.667cqw; margin:auto 0; }
+.stat-row { display:flex; gap:1.667cqw; }
+.stat-tile { flex:1; border-top:1px solid var(--hairline); padding-top:1.25cqw; }
+.stat-tile .v { font-size:3.125cqw; font-weight:400; }
+.stat-tile:nth-child(1) .v { color:var(--g-blue-600); }
+.stat-tile:nth-child(2) .v { color:var(--g-red-600); }
+.stat-tile:nth-child(3) .v { color:var(--g-green-600); }
+
+/* =========================================================================
+   7. Chart
+   ========================================================================= */
+.legend { display:flex; gap:2cqw; margin-bottom:1.25cqw; }
+.legend span { display:flex; align-items:center; gap:0.6cqw; font-size:0.9375cqw; color:var(--ink-secondary); }
+.legend i { width:0.9cqw; height:0.9cqw; border-radius:50%; }
+.chart-wrap { flex:1; min-height:0; }
+.chart-wrap svg { width:100%; height:100%; display:block; overflow:visible; }
+
+/* =========================================================================
+   8. Quote
+   ========================================================================= */
+.s-quote .pad { justify-content:center; gap:2cqw; }
+.quote-mark { font-size:9cqw; line-height:.6; color:var(--g-yellow-500); font-weight:700; }
+.quote-text { font-size:2.8125cqw; font-weight:400; line-height:1.35; max-width:80%; }
+
+/* =========================================================================
+   9. Table
+   ========================================================================= */
+table { width:100%; border-collapse:collapse; font-size:1.25cqw; }
+thead th {
+  background:var(--surface-alt); color:var(--ink-secondary); font-weight:500;
+  text-align:left; padding:1cqw 1.25cqw;
+}
+thead th:first-child { border-radius:0.8cqw 0 0 0.8cqw; }
+thead th:last-child  { border-radius:0 0.8cqw 0.8cqw 0; }
+tbody td { padding:1.1cqw 1.25cqw; border-bottom:1px solid var(--g-grey-200); }
+tbody tr:last-child td { border-bottom:none; }
+td .yes { color:var(--g-green-700); font-weight:500; }
+td .no  { color:var(--ink-muted); }
+
+/* =========================================================================
+   10. Closing (dark)
+   ========================================================================= */
+.s-closing .pad { justify-content:center; align-items:flex-start; gap:2.5cqw; }
+</style>
+</head>
+<body>
+<main class="deck">
+
+  <!-- 1. Title ============================================================ -->
+  <section>
+    <p class="frame-label">1. Title</p>
+    <div class="slide s-title accent-blue">
+      <div class="corner-shape"></div>
+      <div class="pad">
+        <div class="dots"><i></i><i></i><i></i><i></i></div>
+        <div>
+          <p class="kicker">Design system</p>
+          <h1 class="display">プロダクト戦略<br>2026年 下半期レビュー</h1>
+        </div>
+        <div class="meta caption">
+          <span>山田 太郎 — プロダクトマネジメント</span>
+          <span>2026年7月6日</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Agenda =========================================================== -->
+  <section>
+    <p class="frame-label">2. Agenda</p>
+    <div class="slide accent-blue">
+      <div class="pad s-agenda-pad" style="flex-direction:row; gap:3.33cqw;">
+        <div style="flex:0 0 34%; display:flex; flex-direction:column; gap:1.25cqw;">
+          <p class="kicker">Agenda</p>
+          <h2 class="headline">本日お話しすること</h2>
+        </div>
+        <ul class="agenda-list body">
+          <li><span class="num">01</span><span>上半期のふりかえり</span></li>
+          <li><span class="num">02</span><span>市場と利用データのハイライト</span></li>
+          <li><span class="num">03</span><span>下半期の重点領域</span></li>
+          <li><span class="num">04</span><span>ロードマップとマイルストーン</span></li>
+          <li><span class="num">05</span><span>次のアクション</span></li>
+        </ul>
+      </div>
+      <div class="footer caption"><span>プロダクト戦略レビュー</span><span>2</span></div>
+    </div>
+  </section>
+
+  <!-- 3. Section divider ================================================== -->
+  <section>
+    <p class="frame-label">3. Section divider</p>
+    <div class="slide s-divider">
+      <p class="big-num">01</p>
+      <div class="pad">
+        <h2 class="headline">上半期のふりかえり</h2>
+        <p class="subtitle">計画と実績、そこから学んだこと</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Content: heading + bullets ======================================= -->
+  <section>
+    <p class="frame-label">4. Content</p>
+    <div class="slide accent-green">
+      <div class="pad">
+        <div class="head-block">
+          <p class="kicker">ふりかえり</p>
+          <h2 class="headline">上半期にうまくいったこと</h2>
+        </div>
+        <ul class="bullets body">
+          <li>新オンボーディング導入で初週継続率が 12pt 改善</li>
+          <li>エンタープライズ向け管理機能を予定どおり4月に出荷</li>
+          <li>サポート応答時間を平均 8時間 → 3時間に短縮</li>
+          <li>パートナー経由の新規契約が前年比 1.8 倍</li>
+        </ul>
+      </div>
+      <div class="footer caption"><span>プロダクト戦略レビュー</span><span>4</span></div>
+    </div>
+  </section>
+
+  <!-- 5. Two-column ======================================================= -->
+  <section>
+    <p class="frame-label">5. Two-column</p>
+    <div class="slide">
+      <div class="pad">
+        <div class="head-block">
+          <p class="kicker" style="color:var(--g-blue-600)">比較</p>
+          <h2 class="headline">続けること・変えること</h2>
+        </div>
+        <div class="cols">
+          <div class="card accent-blue">
+            <div class="card-head"><i></i><h3 class="subtitle" style="color:var(--ink)">続けること</h3></div>
+            <ul class="body">
+              <li>週次のユーザーインタビュー</li>
+              <li>四半期ごとの価格見直し</li>
+              <li>パートナー共同マーケティング</li>
+            </ul>
+          </div>
+          <div class="card accent-green">
+            <div class="card-head"><i></i><h3 class="subtitle" style="color:var(--ink)">変えること</h3></div>
+            <ul class="body">
+              <li>機能単位 → 成果単位のロードマップ</li>
+              <li>リリースを月次から隔週へ</li>
+              <li>ドキュメントの多言語化を前倒し</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer caption"><span>プロダクト戦略レビュー</span><span>5</span></div>
+    </div>
+  </section>
+
+  <!-- 6. Big stat ========================================================= -->
+  <section>
+    <p class="frame-label">6. Big stat</p>
+    <div class="slide accent-blue">
+      <div class="pad">
+        <div class="head-block">
+          <p class="kicker">ハイライト</p>
+          <h2 class="headline">利用は着実に伸びている</h2>
+        </div>
+        <div class="hero" style="display:flex; align-items:baseline; gap:1.2cqw; margin:auto 0;">
+          <span class="stat">+42%</span>
+          <span class="subtitle">月間アクティブチーム数(前年同月比)</span>
+        </div>
+        <div class="stat-row">
+          <div class="stat-tile"><div class="v">3.2万</div><div class="caption">月間アクティブチーム</div></div>
+          <div class="stat-tile"><div class="v">98.2%</div><div class="caption">月次継続率</div></div>
+          <div class="stat-tile"><div class="v">4.6</div><div class="caption">満足度(5点満点)</div></div>
+        </div>
+      </div>
+      <div class="footer caption"><span>出典: 社内ダッシュボード、2026年6月</span><span>6</span></div>
+    </div>
+  </section>
+
+  <!-- 7. Chart ============================================================ -->
+  <section>
+    <p class="frame-label">7. Chart</p>
+    <div class="slide">
+      <div class="pad">
+        <div class="head-block" style="margin-bottom:1.25cqw;">
+          <p class="kicker" style="color:var(--g-blue-600)">利用データ</p>
+          <h2 class="headline">プラン別の月間アクティブチーム数</h2>
+        </div>
+        <div class="legend">
+          <span><i style="background:var(--chart-1)"></i>Enterprise</span>
+          <span><i style="background:var(--chart-2)"></i>Business</span>
+          <span><i style="background:var(--chart-3)"></i>Starter</span>
+        </div>
+        <div class="chart-wrap">
+          <!-- Line chart, 3 series. Slot 3 (#EA8600) is sub-3:1 on white →
+               relief rule: every series carries a direct end label + value. -->
+          <svg viewBox="0 0 1600 560" role="img" aria-label="プラン別の月間アクティブチーム数の推移(1月から6月)">
+            <!-- gridlines + y labels -->
+            <g stroke="#E8EAED" stroke-width="1.5">
+              <line x1="80" y1="60"  x2="1420" y2="60"/>
+              <line x1="80" y1="210" x2="1420" y2="210"/>
+              <line x1="80" y1="360" x2="1420" y2="360"/>
+            </g>
+            <line x1="80" y1="510" x2="1420" y2="510" stroke="#BDC1C6" stroke-width="2"/>
+            <g font-size="26" fill="#5F6368" font-family="inherit">
+              <text x="64" y="68"  text-anchor="end">15k</text>
+              <text x="64" y="218" text-anchor="end">10k</text>
+              <text x="64" y="368" text-anchor="end">5k</text>
+              <text x="64" y="518" text-anchor="end">0</text>
+              <text x="80"   y="552">1月</text>
+              <text x="348"  y="552">2月</text>
+              <text x="616"  y="552">3月</text>
+              <text x="884"  y="552">4月</text>
+              <text x="1152" y="552">5月</text>
+              <text x="1420" y="552" text-anchor="end">6月</text>
+            </g>
+            <!-- series 1: Enterprise 6.2→7.0→7.8→8.9→10.1→11.4k -->
+            <polyline fill="none" stroke="#4285F4" stroke-width="5" stroke-linejoin="round"
+              points="80,324 348,300 616,276 884,243 1152,207 1420,168"/>
+            <!-- series 2: Business 4.0→4.4→4.6→5.1→5.6→6.0k -->
+            <polyline fill="none" stroke="#EA4335" stroke-width="5" stroke-linejoin="round"
+              points="80,390 348,378 616,372 884,357 1152,342 1420,330"/>
+            <!-- series 3: Starter 2.6→2.8→3.1→3.2→3.5→3.7k -->
+            <polyline fill="none" stroke="#EA8600" stroke-width="5" stroke-linejoin="round"
+              points="80,432 348,426 616,417 884,414 1152,405 1420,399"/>
+            <!-- end markers: 2px white ring separates overlapping marks -->
+            <g stroke="#fff" stroke-width="3">
+              <circle cx="1420" cy="168" r="10" fill="#4285F4"/>
+              <circle cx="1420" cy="330" r="10" fill="#EA4335"/>
+              <circle cx="1420" cy="399" r="10" fill="#EA8600"/>
+            </g>
+            <!-- direct end labels: text in ink, identity by position -->
+            <g font-size="28" fill="#202124" font-family="inherit">
+              <text x="1444" y="176" font-weight="500">Enterprise 11.4k</text>
+              <text x="1444" y="338" font-weight="500">Business 6.0k</text>
+              <text x="1444" y="407" font-weight="500">Starter 3.7k</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div class="footer caption"><span>出典: 社内ダッシュボード、2026年6月</span><span>7</span></div>
+    </div>
+  </section>
+
+  <!-- 8. Quote ============================================================ -->
+  <section>
+    <p class="frame-label">8. Quote</p>
+    <div class="slide s-quote accent-yellow">
+      <div class="pad">
+        <p class="quote-mark">&ldquo;</p>
+        <p class="quote-text">導入から3か月で、週次レポートの作成時間がほぼゼロになりました。チームは分析ではなく意思決定に時間を使えています。</p>
+        <p class="caption">佐藤 花子 — 株式会社サンプル 情報システム部長</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Table ============================================================ -->
+  <section>
+    <p class="frame-label">9. Table</p>
+    <div class="slide">
+      <div class="pad">
+        <div class="head-block">
+          <p class="kicker" style="color:var(--g-blue-600)">プラン</p>
+          <h2 class="headline">下半期のプラン構成</h2>
+        </div>
+        <table>
+          <thead>
+            <tr><th>機能</th><th>Starter</th><th>Business</th><th>Enterprise</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>基本ダッシュボード</td><td><span class="yes">含む</span></td><td><span class="yes">含む</span></td><td><span class="yes">含む</span></td></tr>
+            <tr><td>チーム共有スペース</td><td><span class="no">—</span></td><td><span class="yes">含む</span></td><td><span class="yes">含む</span></td></tr>
+            <tr><td>SSO / 監査ログ</td><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="yes">含む</span></td></tr>
+            <tr><td>専任サポート</td><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="yes">含む</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="footer caption"><span>プロダクト戦略レビュー</span><span>9</span></div>
+    </div>
+  </section>
+
+  <!-- 10. Closing (dark) ================================================== -->
+  <section>
+    <p class="frame-label">10. Closing(ダーク面)</p>
+    <div class="slide s-closing" data-theme="dark">
+      <div class="pad">
+        <div class="dots"><i></i><i></i><i></i><i></i></div>
+        <h2 class="display">Thank you</h2>
+        <div class="caption">
+          <p>ご質問・フィードバックはお気軽に</p>
+          <p style="color:var(--accent-text); margin-top:0.4cqw;">product-team@example.com</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+</body>
+</html>

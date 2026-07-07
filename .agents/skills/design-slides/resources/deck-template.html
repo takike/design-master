@@ -17,28 +17,28 @@
 <style id="design-tokens">
 /* INLINE design-system/tokens.css HERE (current version below) */
 :root {
-  --color-bg: #fafaf9;
-  --color-surface: #ffffff;
-  --color-text: #1c1917;
-  --color-text-muted: #57534e;
-  --color-primary: #4338ca;
-  --color-primary-contrast: #ffffff;
-  --color-accent: #d97706;
-  --color-border: #e7e5e4;
-  --color-success: #15803d;
-  --color-warning: #b45309;
-  --color-danger: #b91c1c;
-  --font-sans: 'Inter', 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic UI', system-ui, sans-serif;
-  --font-display: 'Inter', 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic UI', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, 'Noto Sans Mono', monospace;
+  --color-bg: #FFFFFF;
+  --color-surface: #F8F9FA;
+  --color-text: #202124;
+  --color-text-muted: #5F6368;
+  --color-primary: #1A73E8;
+  --color-primary-contrast: #FFFFFF;
+  --color-accent: #D93025;
+  --color-border: #DADCE0;
+  --color-success: #188038;
+  --color-warning: #F29900;
+  --color-danger: #C5221F;
+  --font-sans: 'Google Sans', 'Google Sans Text', Roboto, 'Helvetica Neue', Arial, 'Noto Sans JP', sans-serif;
+  --font-display: 'Google Sans', 'Google Sans Text', Roboto, 'Helvetica Neue', Arial, 'Noto Sans JP', sans-serif;
+  --font-mono: 'Roboto Mono', 'SFMono-Regular', Consolas, 'Noto Sans Mono', monospace;
   --text-xs: 12px; --text-sm: 14px; --text-base: 16px; --text-lg: 20px;
   --text-xl: 25px; --text-2xl: 31px; --text-3xl: 39px; --text-4xl: 49px; --text-5xl: 61px;
   --space-0: 0; --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
   --space-6: 24px; --space-8: 32px; --space-12: 48px; --space-16: 64px; --space-24: 96px;
-  --radius-sm: 4px; --radius-md: 8px; --radius-lg: 16px; --radius-full: 9999px;
-  --shadow-sm: 0 1px 2px rgba(28, 25, 23, 0.06);
-  --shadow-md: 0 2px 8px rgba(28, 25, 23, 0.08);
-  --shadow-lg: 0 8px 24px rgba(28, 25, 23, 0.12);
+  --radius-sm: 4px; --radius-md: 8px; --radius-lg: 24px; --radius-full: 9999px;
+  --shadow-sm: none;
+  --shadow-md: 0 1px 3px rgba(60, 64, 67, 0.15);
+  --shadow-lg: 0 2px 6px rgba(60, 64, 67, 0.15);
 }
 </style>
 <style id="deck-engine">
@@ -95,22 +95,25 @@ html, body { margin: 0; padding: 0; }
 /* Per-deck styles. Build on the tokens; keep every slide inside 1280×720. */
 .slide { padding: var(--space-16); }
 .slide .kicker {
+  /* brand: Medium 500, sentence case (no ALL CAPS) */
   color: var(--color-primary);
   font-size: var(--text-sm);
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 0.02em;
   margin: 0 0 var(--space-4);
 }
 .slide h1 {
+  /* brand: Regular-weight headings */
   font-family: var(--font-display);
   font-size: var(--text-5xl);
+  font-weight: 400;
   line-height: 1.1;
   margin: 0 0 var(--space-6);
 }
 .slide h2 {
   font-family: var(--font-display);
   font-size: var(--text-3xl);
+  font-weight: 400;
   line-height: 1.15;
   margin: 0 0 var(--space-8);
 }

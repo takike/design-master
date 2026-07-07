@@ -18,21 +18,21 @@ body.ds {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Buttons */
+/* Buttons — brand: pill shape, flat, Medium (500) label */
 .btn {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
   padding: var(--space-3) var(--space-6);
   border: 1px solid transparent;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-full);
   font-family: var(--font-sans);
   font-size: var(--text-base);
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.2;
   text-decoration: none;
   cursor: pointer;
-  transition: background-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+  transition: background-color 0.15s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.15s cubic-bezier(0.2, 0, 0, 1);
 }
 .btn-primary {
   background: var(--color-primary);
@@ -40,7 +40,6 @@ body.ds {
 }
 .btn-primary:hover {
   box-shadow: var(--shadow-md);
-  transform: translateY(-1px);
 }
 .btn-ghost {
   background: transparent;
@@ -55,10 +54,10 @@ body.ds {
   font-size: var(--text-sm);
 }
 
-/* Cards */
+/* Cards — brand: Grey 50 fill, 24px radius, no border, no shadow */
 .card {
   background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  border: none;
   border-radius: var(--radius-lg);
   padding: var(--space-8);
   box-shadow: var(--shadow-sm);
@@ -67,6 +66,7 @@ body.ds {
   margin: 0 0 var(--space-3);
   font-family: var(--font-display);
   font-size: var(--text-lg);
+  font-weight: 500;
 }
 .card p {
   margin: 0;
@@ -119,9 +119,10 @@ body.ds {
   gap: var(--space-1);
 }
 .stat .stat-value {
+  /* brand: big numbers are Regular weight, accent-colored */
   font-family: var(--font-display);
   font-size: var(--text-3xl);
-  font-weight: 700;
+  font-weight: 400;
   color: var(--color-primary);
   line-height: 1.1;
 }
@@ -144,7 +145,9 @@ body.ds {
   max-width: 70ch;
 }
 .prose h1, .prose h2, .prose h3 {
+  /* brand: Regular-weight headings, sentence case */
   font-family: var(--font-display);
+  font-weight: 400;
   line-height: 1.15;
 }
 .prose h1 { font-size: var(--text-4xl); }
@@ -164,7 +167,7 @@ body.ds {
 .navbar .brand {
   font-family: var(--font-display);
   font-size: var(--text-lg);
-  font-weight: 700;
+  font-weight: 500;
   color: var(--color-text);
   text-decoration: none;
 }

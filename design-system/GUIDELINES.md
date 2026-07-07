@@ -80,5 +80,24 @@ universal principles).
 
 <!-- /design-import merges brand-specific guidance below this line. -->
 
-None yet — using the Neutral Default system. Run `/design-import` to bring
-in your Claude Design system, or `/design-system` to build one.
+**Google Core Brand** (imported 2026-07-07 from
+`imports/google-core-brand/` — full spec in its `design-system.md`,
+summary in `BRAND.md`):
+
+- ~90% of any screen is white + grey; brand color is ~10% garnish.
+  Background is pure white, not off-white.
+- One accent color per screen/slide, rotating blue → red → yellow → green
+  across a deck. All four colors together only at "brand moments"
+  (four-dot row on title/closing).
+- Headings are **Regular (400)** weight, sentence case, left-aligned.
+  Weights limited to 400/500/700.
+- Flat + round: pill buttons/chips, 24px card radius, no borders on
+  cards (Grey 50 fill instead), shadows essentially never.
+- **No gradients.** Use flat fills and light color washes.
+- Colored text on white must use the 600-series or deeper; Yellow is
+  never text/thin lines on white.
+- Decorative shapes: at most one large quarter-circle/arc per slide, and
+  it is the only element allowed to bleed past margins.
+- Charts follow the imported validated palette
+  (`components/chart-palette.html`): fixed slot order, direct labels,
+  no dual axes; status colors always ship with icon + label.

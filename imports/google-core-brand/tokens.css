@@ -1,0 +1,114 @@
+/* ==========================================================================
+   Google Core Brand — presentation design tokens
+   Base canvas: 16:9, 1920×1080. Size tokens use px at that base;
+   the deck template converts them to container-query units (cqw).
+   ========================================================================== */
+
+:root {
+  /* --- Core colors (logo order: blue → red → yellow → green) ------------ */
+  --g-blue-500:   #4285F4;
+  --g-red-500:    #EA4335;
+  --g-yellow-500: #FBBC04;
+  --g-green-500:  #34A853;
+
+  /* --- Extended ramps ---------------------------------------------------- */
+  --g-blue-50:  #E8F0FE; --g-blue-200: #AECBFA; --g-blue-600: #1A73E8;
+  --g-blue-700: #1967D2; --g-blue-800: #185ABC; --g-blue-900: #174EA6;
+
+  --g-red-50:  #FCE8E6; --g-red-200: #F6AEA9; --g-red-600: #D93025;
+  --g-red-700: #C5221F; --g-red-800: #B31412; --g-red-900: #A50E0E;
+
+  --g-yellow-50:  #FEF7E0; --g-yellow-200: #FDE293; --g-yellow-600: #F9AB00;
+  --g-yellow-700: #F29900; --g-yellow-800: #EA8600; --g-yellow-900: #E37400;
+
+  --g-green-50:  #E6F4EA; --g-green-200: #A8DAB5; --g-green-600: #1E8E3E;
+  --g-green-700: #188038; --g-green-800: #137333; --g-green-900: #0D652D;
+
+  /* --- Greys (never pure black) ------------------------------------------ */
+  --g-grey-50:  #F8F9FA; --g-grey-100: #F1F3F4; --g-grey-200: #E8EAED;
+  --g-grey-300: #DADCE0; --g-grey-400: #BDC1C6; --g-grey-500: #9AA0A6;
+  --g-grey-600: #80868B; --g-grey-700: #5F6368; --g-grey-800: #3C4043;
+  --g-grey-900: #202124;
+
+  /* --- Semantic roles (light slide) --------------------------------------- */
+  --surface:        #FFFFFF;
+  --surface-alt:    var(--g-grey-50);
+  --ink:            var(--g-grey-900);
+  --ink-secondary:  var(--g-grey-700);
+  --ink-muted:      var(--g-grey-500);
+  --hairline:       var(--g-grey-300);
+  --accent:         var(--g-blue-500);   /* per-slide accent, rotate */
+  --accent-text:    var(--g-blue-600);   /* colored text on white: 600+ */
+  --accent-wash:    var(--g-blue-50);
+
+  /* --- Chart palette, light surface (validated: min adj. CVD ΔE 22.4;
+         slot 3 is sub-3:1 on white → always direct-label it) -------------- */
+  --chart-1: #4285F4;
+  --chart-2: #EA4335;
+  --chart-3: #EA8600;
+  --chart-4: #1E8E3E;
+  --chart-5: #174EA6;
+  --chart-6: #A50E0E;
+  --chart-other: var(--g-grey-600);
+  --chart-grid: var(--g-grey-200);
+  --chart-axis: var(--g-grey-400);
+
+  /* --- Status (always icon + label, never a series color) ---------------- */
+  --status-good:     var(--g-green-700);
+  --status-warning:  var(--g-yellow-700);
+  --status-critical: var(--g-red-700);
+
+  /* --- Typography --------------------------------------------------------- */
+  --font-sans: "Google Sans", "Google Sans Text", Roboto, "Helvetica Neue",
+               Arial, "Noto Sans JP", sans-serif;
+  /* px at 1920×1080 */
+  --type-display: 96px;  /* w400 lh1.1  */
+  --type-headline: 54px; /* w400 lh1.15 */
+  --type-subtitle: 32px; /* w400 lh1.4  */
+  --type-body: 28px;     /* w400 lh1.5  */
+  --type-kicker: 22px;   /* w500 lh1.2  */
+  --type-caption: 18px;  /* w400 lh1.4  */
+  --type-stat: 200px;    /* w400 lh1.0  */
+
+  /* --- Layout ------------------------------------------------------------- */
+  --slide-margin: 96px;
+  --gutter: 32px;
+  --space-1: 8px;  --space-2: 16px; --space-3: 24px;
+  --space-4: 32px; --space-6: 48px; --space-8: 64px;
+
+  --radius-card: 24px;
+  --radius-pill: 999px;
+  --shadow-subtle: 0 1px 3px rgba(60, 64, 67, 0.15); /* rarely used */
+
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* --- Dark slide (section dividers / closing only) ------------------------ */
+[data-theme="dark"] {
+  --surface:       var(--g-grey-900);
+  --surface-alt:   var(--g-grey-800);
+  --ink:           #FFFFFF;
+  --ink-secondary: var(--g-grey-300);
+  --ink-muted:     var(--g-grey-500);
+  --hairline:      var(--g-grey-800);
+  --accent-text:   var(--g-blue-200);
+  --accent-wash:   var(--g-grey-800);
+
+  /* Chart palette, dark surface #202124 (validated: min adj. CVD ΔE 15.7,
+     all slots ≥3:1). Slot 3 is brand-yellow snapped into the dark band. */
+  --chart-1: #4285F4;
+  --chart-2: #EA4335;
+  --chart-3: #D08000;
+  --chart-4: #34A853;
+  --chart-5: #1A73E8;
+  --chart-6: #D93025;
+  --chart-other: var(--g-grey-500);
+  --chart-grid: var(--g-grey-800);
+  --chart-axis: var(--g-grey-600);
+}
+
+/* --- Per-slide accent rotation (logo order) ------------------------------ */
+.accent-blue   { --accent: var(--g-blue-500);   --accent-text: var(--g-blue-600);   --accent-wash: var(--g-blue-50); }
+.accent-red    { --accent: var(--g-red-500);    --accent-text: var(--g-red-600);    --accent-wash: var(--g-red-50); }
+.accent-yellow { --accent: var(--g-yellow-500); --accent-text: var(--g-yellow-800); --accent-wash: var(--g-yellow-50); }
+.accent-green  { --accent: var(--g-green-500);  --accent-text: var(--g-green-600);  --accent-wash: var(--g-green-50); }
